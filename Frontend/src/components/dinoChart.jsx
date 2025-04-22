@@ -21,28 +21,30 @@ export default function DinoCharts() {
   ]
 
   useEffect(() => {
-    // Carga los datos de alimentacion
-    axios.get('http://localhost:5000/api/dinosaurios/alimentacion')
+    const BASE_URL = 'https://data-visualization-xxvc.onrender.com'
+  
+    // Carga los datos de alimentación
+    axios.get(`${BASE_URL}/api/dinosaurios/alimentacion`)
       .then(res => setAlimentacionData(
         res.data.map(item => ({ name: item.Tipo_alimentacion, value: Number(item.cantidad_en_Argentina) }))
       ))
       .catch(err => console.error("Error en alimentación", err))
-
+  
     // Carga los datos de longitud
-    axios.get('http://localhost:5000/api/dinosaurios/longitud')
+    axios.get(`${BASE_URL}/api/dinosaurios/longitud`)
       .then(res => setLongitudData(
         res.data.map(item => ({ name: item.Especie_nombre, value: Number(item.Longitud) }))
       ))
       .catch(err => console.error("Error en longitud", err))
-
-    // Carga los datos de paises
-    axios.get('http://localhost:5000/api/dinosaurios/paises')
+  
+    // Carga los datos de países
+    axios.get(`${BASE_URL}/api/dinosaurios/paises`)
       .then(res => setPaisesData(
         res.data.map(item => ({ name: item.lived_in, value: Number(item.cantidad_de_especies) }))
       ))
       .catch(err => console.error("Error en países", err))
   }, [])
-
+  
   return (
     <>
       {/* el backgound */}
