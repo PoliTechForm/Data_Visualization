@@ -20,5 +20,9 @@ def get_dinos_alimentacion():
     df = pd.read_csv('./datas_csv/cantidad_dinos_y_tipo_alimentacion.csv')
     return jsonify(df.to_dict(orient='records'))
 
+import os
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))  # default para local, usa PORT en Render
+    app.run(host='0.0.0.0', port=port)
+
